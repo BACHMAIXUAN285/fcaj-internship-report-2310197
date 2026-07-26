@@ -29,7 +29,5 @@ pre: " <b> 1.6. </b> "
 * Xây dựng giao diện và API phân quyền (RBAC) hoàn chỉnh: Bác sĩ xem được báo cáo AI và nhập kết quả khám; Lễ tân dễ dàng check-in bệnh nhân và xuất hóa đơn thu chi phí phát sinh/tiền thuốc đợt 2 tại quầy.
 * Chuẩn hóa toàn bộ danh mục API hệ thống bằng **Swagger (OpenAPI)**, áp dụng validation chặt chẽ cho toàn bộ request đầu vào, nâng cao độ tin cậy và tính dễ bảo trì cho mã nguồn.
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
 
 
