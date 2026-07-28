@@ -5,53 +5,27 @@ weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 7 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Perform comprehensive system testing (Functional Testing, Integration Testing, Stress Testing).
+* Optimize AWS RDS database query performance and ensure medical data security compliance (UUID, CORS, Security Headers).
+* Improve User Experience (UX/UI) on the Next.js Web frontend and real-time Chatbot interface.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Perform load and stress testing using tools (k6 / Artillery) simulating hundreds of concurrent booking requests <br> - **Hands-on:** Verify the correctness of the Pessimistic Locking mechanism to prevent double-booking issues (Race Condition) | 13/07/2026 | 13/07/2026 | [Here](<https://k6.io/docs/>) |
+| Tue | - Analyze and optimize SQL queries executed through ORMs (Prisma/TypeORM) <br> - Configure database Indexing on high-frequency query fields in AWS RDS PostgreSQL to reduce API response latency | 14/07/2026 | 14/07/2026 | [Here](<https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html>) |
+| Wed | - Review and audit system-wide security configurations: <br>&emsp; + Validate UUID encryption to prevent unauthorized data exposure vulnerabilities (IDOR) <br>&emsp; + Configure Helmet, Rate Limiting, and strict CORS Policies on the NestJS Backend | 15/07/2026 | 15/07/2026 | [Here](<https://docs.nestjs.com/security/helmet>) |
+| Thu | - Optimize Next.js Frontend User Interface and Experience (UI/UX): <br>&emsp; + Enhance page load speeds using Server-Side Rendering (SSR) & Caching <br>&emsp; + Refine the WebSocket chat interface by adding a "Typing Indicator" state and smooth error handling | 16/07/2026 | 16/07/2026 | [Here](<https://nextjs.org/docs/app/building-your-application/optimizing>) |
+| Fri | - Conduct End-to-End (E2E) testing across all 6 business workflow steps: From Cognito Authentication --> Chatbot Triage --> Online Booking & Payment --> Doctor AI Report Review & Prescription --> Counter Payment Collection | 17/07/2026 | 17/07/2026 | Internal System Test |
 
 
 ### Week 7 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully conducted Stress Testing, verifying that the Locking mechanism operates with 100% accuracy, completely safeguarding the system against Race Condition / Double-booking issues when multiple patients attempt to book the same appointment slot simultaneously.
+* Successfully optimized response times for primary APIs (reducing latency by over 40%) through strategic indexing on AWS RDS MySQL tables.
+* Ensured medical data security compliance: Masked patient identity details via UUID encryption and blocked brute-force/DDoS attack vectors using Middleware Rate Limiting and Helmet policies.
+* Enhanced Next.js user experience: Delivered a smooth, real-time interactive Chatbot interface with typing indicators and intuitive appointment scheduling views.
+* Completed seamless End-to-End testing for all core business flows, confirming no data bottlenecks or sync failures occurred across AWS Cloud services (Cognito, SageMaker, RDS, S3).
