@@ -5,53 +5,32 @@ weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 8 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Package and verify the complete application across the Production Cloud environment.
+* Finalize the comprehensive technical documentation suite (Database ERD Diagram, Swagger API Specifications, AWS Cloud Architecture Document).
+* Construct an End-to-End Demo script, summarize outcomes, and evaluate final achievements for the Healthcare Web Application project.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Audit and review all AWS infrastructure configurations (EC2, RDS, S3, CloudWatch, Cognito) <br> - Ensure environment variables (.env) and SSL/HTTPS certificates operate reliably in the Production environment | 20/07/2026 | 20/07/2026 | [Here](<https://docs.aws.amazon.com/ec2/>) |
+| Tue | - Standardize and synthesize project technical documentation: <br>&emsp; + Entity-Relationship Diagram (ERD) design in RDS PostgreSQL <br>&emsp; + High-level Cloud-native System Architecture Diagram <br>&emsp; + Bundle Postman Collections / Swagger API Specs for all modules | 21/07/2026 | 21/07/2026 | [Here](<https://swagger.io/docs/specification/about/>) |
+| Wed | - Build a complete End-to-End Demo script matching the 6-step Business Workflow: <br>&emsp; 1. Registration/Login via AWS Cognito <br>&emsp; 2. Chatbot AI medical symptom triage <br>&emsp; 3. Appointment scheduling & Online fee payment (`PREPAID`) <br>&emsp; 4. Doctor reviews AI Summary Report on the Portal <br>&emsp; 5. Doctor submits final diagnosis & issues prescription <br>&emsp; 6. Receptionist check-in & secondary invoice billing (`POSTPAID`) at the counter | 22/07/2026 | 22/07/2026 | [Here](<https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html>) |
+| Thu | - Conduct dry-run Demo rehearsals, record product demonstration videos, and prepare presentation for project final defense | 23/07/2026 | 23/07/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Fri | - Summarize 8-week internship deliverables, evaluate technical goal completion rates, and propose future feature enhancement roadmaps | 24/07/2026 | 24/07/2026 | Project Final Report |
 
 
 ### Week 8 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully deployed and packaged the entire Healthcare Web Application on AWS Cloud, ensuring high availability and robust security via SSL/HTTPS.
+* Completed standardized technical documentation including the Database ERD diagram, AWS Cloud Architecture map, and interactive Swagger API documentation.
+* Developed and executed a seamless End-to-End Demo script, proving the feasibility and fluidity of the 6-step core Business Flow.
+* Evaluated the project as having met all target technical standards:
+  * Secure identity authentication via **AWS Cognito**.
+  * Automated symptom triage and medical Summary Report generation using **Amazon SageMaker**.
+  * Complete prevention of double-booking issues (Race Condition) on **AWS RDS MySQL** via Row-level Locks.
+  * Flexible two-stage payment integration (`PREPAID` online and `POSTPAID` at the counter).
+  * Centralized system health monitoring and logging through **AWS CloudWatch**.
+* Successfully met the 8-week project milestone schedule, fully prepared for final project acceptance and defense.
