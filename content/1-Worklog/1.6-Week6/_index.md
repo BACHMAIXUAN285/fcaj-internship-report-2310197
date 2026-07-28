@@ -5,53 +5,27 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 6 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Develop advanced features: Connect the NestJS Backend with AI models hosted on Amazon SageMaker to analyze medical symptoms and generate Summary Reports.
+* Integrate online payment gateways (PayOS / VNPay / Stripe) to handle deposit and basic consultation fee payment flows (`PREPAID`).
+* Build Role-Based Access Control (RBAC) Dashboards for Doctors and Receptionists; refactor code structure and standardize RESTful APIs.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Integrate NestJS Backend with AI models running on **Amazon SageMaker Endpoint** <br> - Develop 3-level triage logic (Red - Yellow - Green) based on AI response payloads and handle user UI navigation flows | 06/07/2026 | 06/07/2026 | [Here](<https://docs.aws.amazon.com/sagemaker/>) |
+| Tue | - Develop AI Pre-consultation Module: Automatically extract chat history for AI to summarize into a **medical-grade Summary Report** <br> - Attach reports to appointment records in the Database for delivery to the Doctor Portal | 07/07/2026 | 07/07/2026 | [Here](<https://docs.aws.amazon.com/sagemaker/latest/dg/realtime-endpoints.html>) |
+| Wed | -- Integrate Online Payment Gateways (**PayOS / VNPay / Stripe**) into NestJS <br> - **Hands-on:** Develop APIs to initiate basic consultation fee transactions (`PREPAID`) and handle automated Webhook verification | 08/07/2026 | 08/07/2026 | [Here](<https://stripe.com/docs/api>) |
+| Thu | - Build Healthcare Staff Portal with **Role-Based Access Control (RBAC)** mechanisms using NestJS Guards: <br>&emsp; + **Doctor Dashboard:** View appointment lists, read AI Summary Reports, submit final diagnoses, and issue prescriptions <br>&emsp; + **Receptionist Dashboard:** Check-in patients and generate invoices for secondary payments (`POSTPAID`) at the desk | 09/07/2026 | 09/07/2026 | [Here](<https://docs.nestjs.com/guards>) |
+| Fri | - Refactor code structure, optimize Data Transfer Objects (DTOs), and validate incoming request payloads <br> - Standardize and bundle system API documentation using **Swagger / OpenAPI Spec** | 10/07/2026 | 10/07/2026 | [Here](<https://docs.nestjs.com/openapi/introduction>) |
 
 
 ### Week 6 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully connected NestJS with **Amazon SageMaker Endpoint**, enabling symptom extraction from Chatbot conversations and automated generation of **medical-grade Summary Reports** to save doctors preparation time before consultations.
+* Completed the 3-level emergency classification flow (Red: Emergency alert / 115 hotline — Green: Self-care advice — Yellow: Navigate to appointment scheduling).
+* Successfully integrated online payment gateways (PayOS / VNPay / Stripe), automatically updating appointment status from `PENDING_PAYMENT` to `CONFIRMED` upon receiving Webhook signals.
+* Developed complete RBAC interfaces and APIs: Doctors can review AI reports and record medical results; Receptionists can easily check-in patients and issue invoices for secondary costs/medications (`POSTPAID`) at the counter.
+* Standardized all system APIs using **Swagger (OpenAPI)** and applied strict payload validation to all incoming requests, enhancing code reliability and maintainability.
