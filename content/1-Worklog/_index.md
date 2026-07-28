@@ -6,34 +6,20 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+This page provides an overview of the worklog recorded during the research, design, and development of the AI-powered Healthcare Web Application with triage and appointment booking on the Cloud platform. The project was completed over a period of **8 weeks** with the following detailed milestones:
 
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
+**Week 1:** [Overview of Cloud-based Web Architecture](1.1-week1/)
 
-Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
+**Week 2:** [Web Application Building and Deployment](1.2-week2/)
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+**Week 3:** [Deploying Application to AWS and Integrating Storage Services (S3)](1.3-week3/)
 
-**Week 2:** [Doing task A...](1.2-week2/)
+**Week 4:** [Database Integration (RDS/MySQL)](1.4-week4/)
 
-**Week 3:** [Doing task B...](1.3-week3/)
+**Week 5:** [Integrating Logging and Monitoring with CloudWatch, Error Handling, and System Stability](1.5-week5/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 6:** [Advanced Feature Development, Code and API Optimization](1.6-week6/)
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 7:** [System Testing, Performance Optimization, and UX Improvement](1.7-week7/)
 
-**Week 6:** [Doing task E...](1.6-week6/)
-
-**Week 7:** [Doing task G...](1.7-week7/)
-
-**Week 8:** [Doing task H...](1.8-week8/)
-
-**Week 9:** [Doing task I...](1.9-week9/)
-
-**Week 10:** [Doing task L...](1.10-week10/)
-
-**Week 11:** [Doing task M...](1.11-week11/)
-
-**Week 12:** [Doing task N...](1.12-week12/)
+**Week 8:** [Finalizing System and Documentation, Product Demo, Summary, and Evaluation](1.8-week8/)
