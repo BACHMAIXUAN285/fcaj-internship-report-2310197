@@ -5,53 +5,28 @@ weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 1 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Research general modern Web Application Architectures and Cloud Computing principles.
+* Explore core AWS infrastructure services (**EC2**, **S3**, **RDS**, **DynamoDB**, **API Gateway**, **IAM**, **VPC**) applied to Healthcare Web Systems.
+* Analyze and select an appropriate architectural pattern for the application (Monolithic vs Microservices vs Serverless) and design a high-level Cloud Infrastructure Diagram for the healthcare app.
+* Set up the local development environment (Local Environment) and initialize projects using Next.js (Frontend) and NestJS (Backend).
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Research Cloud Computing fundamentals (IaaS, PaaS, SaaS) and benefits of cloud deployment <br> - Analyze the 3-Tier Web Architecture (Presentation - Application - Database) for the Healthcare project | 01/06/2026 | 01/06/2026 | [Here](<https://aws.amazon.com/what-is-cloud-computing/>) |
+| Tue | - Learn core AWS services: **EC2** (Server), **S3** (File/QR code/medical record storage), **RDS/DynamoDB** (Database), **API Gateway** <br> - Evaluate trade-offs between self-managing servers on EC2 vs using Fully Managed Services | 02/06/2026 | 02/06/2026 | [Here](<https://docs.aws.amazon.com/>) |
+| Wed | - Study cloud security solutions: Access management with **AWS IAM**, secure network isolation with **AWS VPC** (Public/Private Subnets) <br> - Research healthcare data compliance standards and data encryption (At-Rest and In-Transit via SSL/TLS) | 03/06/2026 | 03/06/2026 | [Here](<https://docs.aws.amazon.com/iam/>) |
+| Thu | - Install development tools: **AWS CLI**, **Node.js**, **Docker**, configure AWS IAM user credentials <br> - Initialize GitHub repository and set up project directory structures for Frontend (Next.js) and Backend (NestJS) | 04/06/2026 | 04/06/2026 | [Here](<https://docs.aws.amazon.com/cli/>) |
+| Fri | - Sketch and draw the Cloud Infrastructure Diagram (**AWS Architecture Diagram**) for the Healthcare Web Application <br> - Document technical requirements and finalize core feature workflows: Appointment booking, medical record lookup, payments, and Chatbot | 05/06/2026 | 05/06/2026 | [Here](<https://aws.amazon.com/architecture/>) |
 
 
 ### Week 1 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Mastered multi-tier web architecture, cloud computing fundamentals, and essential AWS services.
+* Completed the high-level **AWS Architecture Diagram** for the Healthcare Web System, clearly defining deployment locations for Frontend, Backend, and Database tiers.
+* Gained a solid understanding of secure network partitioning mechanisms (VPC, Public/Private Subnets) and access control via AWS IAM.
+* Successfully initialized local development environments and base source code repositories connected to GitHub for **Next.js** and **NestJS**.
+* Prepared for Week 2 tasks focusing on developing user interfaces and core Backend APIs for the appointment booking system.
