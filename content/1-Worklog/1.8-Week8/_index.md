@@ -8,29 +8,24 @@ pre: " <b> 1.8. </b> "
 
 ### Week 8 Objectives:
 
-* Package and verify the complete application across the Production Cloud environment.
-* Finalize the comprehensive technical documentation suite (Database ERD Diagram, Swagger API Specifications, AWS Cloud Architecture Document).
-* Construct an End-to-End Demo script, summarize outcomes, and evaluate final achievements for the Healthcare Web Application project.
+* Finalize containerization (Docker) and automate the deployment process onto AWS cloud infrastructure (AWS ECS/App Runner, EC2, RDS).
+* Optimize patient check-in, reception, and direct payment collection features for Receptionists / Cashiers (eliminating online payment integrations).
+* Prepare technical documentation, user manuals, and conduct final system acceptance testing.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Audit and review all AWS infrastructure configurations (EC2, RDS, S3, CloudWatch, Cognito) <br> - Ensure environment variables (.env) and SSL/HTTPS certificates operate reliably in the Production environment | 20/07/2026 | 20/07/2026 | [Here](<https://docs.aws.amazon.com/ec2/>) |
-| Tue | - Standardize and synthesize project technical documentation: <br>&emsp; + Entity-Relationship Diagram (ERD) design in RDS PostgreSQL <br>&emsp; + High-level Cloud-native System Architecture Diagram <br>&emsp; + Bundle Postman Collections / Swagger API Specs for all modules | 21/07/2026 | 21/07/2026 | [Here](<https://swagger.io/docs/specification/about/>) |
-| Wed | - Build a complete End-to-End Demo script matching the 6-step Business Workflow: <br>&emsp; 1. Registration/Login via AWS Cognito <br>&emsp; 2. Chatbot AI medical symptom triage <br>&emsp; 3. Appointment scheduling & Online fee payment (`PREPAID`) <br>&emsp; 4. Doctor reviews AI Summary Report on the Portal <br>&emsp; 5. Doctor submits final diagnosis & issues prescription <br>&emsp; 6. Receptionist check-in & secondary invoice billing (`POSTPAID`) at the counter | 22/07/2026 | 22/07/2026 | [Here](<https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html>) |
-| Thu | - Conduct dry-run Demo rehearsals, record product demonstration videos, and prepare presentation for project final defense | 23/07/2026 | 23/07/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Fri | - Summarize 8-week internship deliverables, evaluate technical goal completion rates, and propose future feature enhancement roadmaps | 24/07/2026 | 24/07/2026 | Project Final Report |
+| Mon | - Build Dockerfiles and docker-compose configurations for both NestJS Backend and Next.js Frontend.<br>- Set up CI/CD pipelines (GitHub Actions / AWS CodePipeline) to automate application build and deployment to AWS. | 20/07/2026 | 20/07/2026 | [Here](<https://docs.docker.com/>) |
+| Tue | - Configure AWS production Cloud infrastructure: Set up Custom Domains, HTTPS/SSL certificates via AWS Certificate Manager (ACM) and Route 53.<br>- Configure AWS CloudWatch Logs and AWS SES/SNS for system monitoring and automated email/SMS appointment confirmations. | 21/07/2026 | 21/07/2026 | [Here](<https://docs.aws.amazon.com/>) |
+| Wed | - Complete and optimize the Receptionist/Cashier Dashboard UI:<br>&emsp;+ Support fast appointment lookups via QR code or phone number.<br>&emsp;+ Streamline check-in verification and in-person service invoice/receipt issuance at the counter. | 22/07/2026 | 22/07/2026 | Internal Docs |
+| Thu | - Conduct final system smoke testing in the Production environment.<br>- Optimize frontend build size and caching strategies to minimize cloud operational costs. | 23/07/2026 | 23/07/2026 | Internal Test |
+| Fri | - Author final project documentation: Architecture Documentation, Deployment/Operations Manual, and User Guides for Doctors & Receptionists.<br>- Summarize project achievements and conduct final handover/acceptance. | 24/07/2026 | 24/07/2026 | Project Deliverables |
 
 
 ### Week 8 Achievements:
 
-* Successfully deployed and packaged the entire Healthcare Web Application on AWS Cloud, ensuring high availability and robust security via SSL/HTTPS.
-* Completed standardized technical documentation including the Database ERD diagram, AWS Cloud Architecture map, and interactive Swagger API documentation.
-* Developed and executed a seamless End-to-End Demo script, proving the feasibility and fluidity of the 6-step core Business Flow.
-* Evaluated the project as having met all target technical standards:
-  * Secure identity authentication via **AWS Cognito**.
-  * Automated symptom triage and medical Summary Report generation using **Amazon SageMaker**.
-  * Complete prevention of double-booking issues (Race Condition) on **AWS RDS MySQL** via Row-level Locks.
-  * Flexible two-stage payment integration (`PREPAID` online and `POSTPAID` at the counter).
-  * Centralized system health monitoring and logging through **AWS CloudWatch**.
-* Successfully met the 8-week project milestone schedule, fully prepared for final project acceptance and defense.
+* Successfully containerized applications using Docker and established a 100% automated CI/CD pipeline for AWS deployment.
+* The system is fully operational in the Production environment with HTTPS/SSL security, a official domain name, and active CloudWatch logging.
+* Delivered a seamless on-site receptionist workflow: Patient lookup and in-person payment processing are fast and accurate, eliminating reliance on online third-party payment gateways.
+* Automated appointment confirmation notifications (Email/SMS via AWS SES/SNS) function reliably and accurately.
+* Completed a comprehensive technical documentation suite, user manuals, and successfully passed the final project acceptance review on schedule.
