@@ -8,31 +8,26 @@ pre: " <b> 1.8. </b> "
 
 ### Mục tiêu tuần 8:
 
-* Đóng gói, kiểm tra lại toàn bộ ứng dụng trên môi trường Production Cloud.
-* Hoàn thiện bộ tài liệu kỹ thuật (Sơ đồ ERD CSDL, Swagger API Docs, Tài liệu kiến trúc AWS Cloud).
-* Xây dựng kịch bản Demo end-to-end, tổng kết và đánh giá kết quả thực hiện dự án Healthcare Web App.
+* Hoàn thiện đóng gói container (Docker) và tự động hóa quy trình triển khai ứng dụng lên hạ tầng AWS (AWS ECS/App Runner, EC2, RDS).
+* Tối ưu hóa tính năng Check-in, tiếp nhận và thu phí khám trực tiếp dành cho Lễ tân / Thu ngân.
+* Chuẩn bị tài liệu kỹ thuật, hướng dẫn sử dụng (User Manual) và tiến hành nghiệm thu toàn bộ hệ thống.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2   | - Rà soát toàn bộ cấu hình hạ tầng AWS (EC2, RDS, S3, CloudWatch, Cognito) <br> - Đảm bảo các biến môi trường (.env) và chứng chỉ SSL/HTTPS hoạt động ổn định trên môi trường Production | 20/07/2026 | 20/07/2026 | [Tại đây](<https://docs.aws.amazon.com/ec2/>) |
-| 3   | - Chuẩn hóa và tổng hợp tài liệu kỹ thuật dự án: <br>&emsp; + Sơ đồ thiết kế CSDL (ERD) trong RDS PostgreSQL <br>&emsp; + Sơ đồ kiến trúc Cloud-native tổng quan hệ thống <br>&emsp; + Đóng gói file Postman Collection / Swagger API Spec cho các module | 21/07/2026 | 21/07/2026 | [Tại đây](<https://swagger.io/docs/specification/about/>) |
-| 4   | - Xây dựng kịch bản kịch bản Demo hoàn chỉnh theo đúng Business Flow 6 bước: <br>&emsp; 1. Đăng ký/Đăng nhập qua AWS Cognito <br>&emsp; 2. Chatbot phân luồng triệu chứng y tế <br>&emsp; 3. Đặt lịch khám & Thanh toán phí khám online (`PREPAID`) <br>&emsp; 4. Bác sĩ đọc Báo cáo Tóm tắt AI trên Portal <br>&emsp; 5. Bác sĩ chẩn đoán & kê đơn <br>&emsp; 6. Lễ tân check-in & xuất hóa đơn thu tiền đợt 2 (`POSTPAID`) tại quầy | 22/07/2026 | 22/07/2026 | [Tại đây](<https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html>) |
-| 5   | - Thực hành chạy Demo thử nghiệm, ghi hình video demo sản phẩm và chuẩn bị báo cáo tổng kết dự án | 23/07/2026 | 23/07/2026 | [Tại đây](<https://cloudjourney.awsstudygroup.com/>) |
-| 6   | - Tổng kết công việc 8 tuần, đánh giá các mục tiêu kỹ thuật đã hoàn thành và đề xuất các hướng phát triển nâng cấp trong tương lai | 24/07/2026 | 24/07/2026 | Báo cáo Tổng kết Dự án |
+| 2   | - Xây dựng Dockerfile và docker-compose cho cả NestJS Backend và Next.js Frontend.<br>- Cấu hình quy trình CI/CD (GitHub Actions / AWS CodePipeline) để tự động hóa việc build và deploy ứng dụng lên AWS. | 20/07/2026 | 20/07/2026 | [Tại đây](<https://docs.docker.com/>) |
+| 3   | - Cấu hình hạ tầng Cloud production trên AWS: Cấu hình Domain, HTTPS/SSL qua AWS Certificate Manager (ACM) và Route 53.<br>- Thiết lập CloudWatch Logs và AWS SES/SNS để giám sát hệ thống và tự động gửi email/SMS xác nhận lịch hẹn cho bệnh nhân. | 21/07/2026 | 21/07/2026 | [Tại đây](<https://docs.aws.amazon.com/>) |
+| 4   | - Hoàn thiện và tối ưu giao diện Dashboard Lễ tân/Thu ngân:<br>&emsp;+ Hỗ trợ tra cứu nhanh lịch hẹn bệnh nhân qua mã QR/Số điện thoại.<br>&emsp;+ Tối ưu luồng xác nhận check-in và xuất hóa đơn/phiếu thu phí dịch vụ trực tiếp tại quầy. | 22/07/2026 | 22/07/2026 | Internal Docs |
+| 5   | - Kiểm thử tổng duyệt toàn hệ thống trên môi trường Production (Staging/Production Smoke Test).<br>- Tối ưu hóa dung lượng build frontend và bộ nhớ cache để giảm tối đa chi phí vận hành đám mây. | 23/07/2026 | 23/07/2026 | Internal Test |
+| 6   | - Viết tài liệu bàn giao hệ thống: Tài liệu kiến trúc (Architecture Document), Hướng dẫn cài đặt/vận hành và Hướng dẫn sử dụng cho Bác sĩ & Lễ tân.<br>- Tổng kết dự án, đánh giá kết quả đạt được và nghiệm thu. | 24/07/2026 | 24/07/2026 | Project Deliverables |
 
 
 ### Kết quả đạt được tuần 8:
 
-* Triển khai và đóng gói thành công toàn bộ hệ thống Healthcare Web App trên nền tảng AWS Cloud, đảm bảo tính sẵn sàng cao và bảo mật với SSL/HTTPS.
-* Hoàn thiện bộ tài liệu kỹ thuật chuẩn mực bao gồm: Sơ đồ ERD CSDL, sơ đồ kiến trúc các dịch vụ Cloud AWS, và danh mục API chi tiết trên Swagger.
-* Xây dựng và thực hiện thành công kịch bản Demo End-to-End trôi chảy, chứng minh tính khả thi và mượt mà của Business Flow.
-* Đánh giá dự án đạt đầy đủ các tiêu chuẩn kỹ thuật đề ra:
-  * Xác thực người dùng an toàn qua **AWS Cognito**.
-  * Phân luồng triệu chứng và tạo Báo cáo Tóm tắt Y khoa tự động qua **Amazon SageMaker**.
-  * Chống trùng lịch (Race Condition) triệt để trên **AWS RDS MySQL** bằng Row-level Lock.
-  * Tích hợp thanh toán linh hoạt 2 đợt (`PREPAID` online và `POSTPAID` tại quầy).
-  * Giám sát hệ thống và log tập trung qua **AWS CloudWatch**.
-* Hoàn thành đúng tiến độ 8 tuần báo cáo, sẵn sàng cho buổi nghiệm thu và bảo vệ dự án.
+* Đã đóng gói ứng dụng thành công bằng Docker và thiết lập xong pipeline CI/CD tự động hoá 100% quá trình triển khai hệ thống lên hạ tầng cloud AWS.
+* Hệ thống vận hành ổn định trên môi trường Production với đầy đủ chứng chỉ bảo mật HTTPS/SSL, tên miền chính thức và hệ thống giám sát CloudWatch.
+* Hoàn thiện mượt mà luồng nghiệp vụ tại quầy cho Lễ tân: Tốc độ tra cứu thông tin bệnh nhân và xử lý thu phí trực tiếp diễn ra nhanh chóng, chính xác, không còn phụ thuộc vào các cổng thanh toán trung gian trực tuyến.
+* Hệ thống gửi thông báo xác nhận lịch hẹn (Email/SMS) tự động hoạt động ổn định và chính xác.
+* Hoàn thành đầy đủ bộ tài liệu kỹ thuật, tài liệu hướng dẫn vận hành và bàn giao nghiệm thu dự án đúng tiến độ đề ra.
 
 
