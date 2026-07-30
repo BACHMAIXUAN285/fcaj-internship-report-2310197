@@ -8,24 +8,24 @@ pre: " <b> 1.8. </b> "
 
 ### Week 8 Objectives:
 
-* Finalize containerization (Docker) and automate the deployment process onto AWS cloud infrastructure (AWS ECS/App Runner, EC2, RDS).
-* Optimize patient check-in, reception, and direct payment collection features for Receptionists / Cashiers (eliminating online payment integrations).
-* Prepare technical documentation, user manuals, and conduct final system acceptance testing.
+* Finalize container packaging (Docker) and automate the application deployment workflow onto AWS infrastructure (AWS ECS/App Runner, EC2, RDS).
+* Complete and optimize the Admin Portal (Doctor Onboarding, schedule management) and Doctor Portal (Split View AI Report, consultation conclusion & prescription delivery) strictly aligned with Business Flow standards.
+* Prepare technical documentation, user manuals for Hospitals & Doctors, and conduct full system acceptance testing.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Build Dockerfiles and docker-compose configurations for both NestJS Backend and Next.js Frontend.<br>- Set up CI/CD pipelines (GitHub Actions / AWS CodePipeline) to automate application build and deployment to AWS. | 20/07/2026 | 20/07/2026 | [Here](<https://docs.docker.com/>) |
-| Tue | - Configure AWS production Cloud infrastructure: Set up Custom Domains, HTTPS/SSL certificates via AWS Certificate Manager (ACM) and Route 53.<br>- Configure AWS CloudWatch Logs and AWS SES/SNS for system monitoring and automated email/SMS appointment confirmations. | 21/07/2026 | 21/07/2026 | [Here](<https://docs.aws.amazon.com/>) |
-| Wed | - Complete and optimize the Receptionist/Cashier Dashboard UI:<br>&emsp;+ Support fast appointment lookups via QR code or phone number.<br>&emsp;+ Streamline check-in verification and in-person service invoice/receipt issuance at the counter. | 22/07/2026 | 22/07/2026 | Internal Docs |
-| Thu | - Conduct final system smoke testing in the Production environment.<br>- Optimize frontend build size and caching strategies to minimize cloud operational costs. | 23/07/2026 | 23/07/2026 | Internal Test |
-| Fri | - Author final project documentation: Architecture Documentation, Deployment/Operations Manual, and User Guides for Doctors & Receptionists.<br>- Summarize project achievements and conduct final handover/acceptance. | 24/07/2026 | 24/07/2026 | Project Deliverables |
+| Mon | - Build Dockerfiles and docker-compose configurations for both NestJS Backend and Next.js Frontend.<br>- Configure CI/CD pipelines (GitHub Actions / AWS CodePipeline) to automate building and deploying the application onto AWS. | 07/20/2026 | 07/20/2026 | [Here](<https://docs.docker.com/>) |
+| Tue | - Configure AWS Production Cloud Infrastructure: Set up Domain name, HTTPS/SSL via AWS Certificate Manager (ACM) and Route 53.<br>- Set up CloudWatch Logs and AWS SES/SNS to monitor system operations, automate temporary password emails for Doctors, and dispatch appointment confirmation Emails/SMS to Patients. | 07/21/2026 | 07/21/2026 | [Here](<https://docs.aws.amazon.com/>) |
+| Wed | - Optimize system administration portals according to the designed Flow:<br>&emsp;+ **Admin Portal (Desktop/Tablet):** Optimize Doctor onboarding workflow, automated account provisioning via AWS Cognito (Email Temporary Password), and Availability Calendar setup.<br>&emsp;+ **Doctor Portal (Desktop):** Optimize Split View interface (AI Summary Report + Diagnostic Form) and instant push delivery of consultation results/prescriptions to the Patient Mobile App. | 07/22/2026 | 07/22/2026 | Internal Docs |
+| Thu | - Conduct final system-wide dress rehearsal testing in the Production environment (Staging/Production Smoke Test).<br>- Optimize frontend build size and memory caching to minimize cloud operational costs. | 07/23/2026 | 07/23/2026 | Internal Test |
+| Fri | - Write system handover documentation: System Architecture Document, Installation & Operations Guide, and User Manuals for Hospital Administrators (Admin Portal) & Doctors (Doctor Portal).<br>- Conclude project, evaluate achieved results, and complete project acceptance sign-off. | 07/24/2026 | 07/24/2026 | Project Deliverables |
 
 
 ### Week 8 Achievements:
 
-* Successfully containerized applications using Docker and established a 100% automated CI/CD pipeline for AWS deployment.
-* The system is fully operational in the Production environment with HTTPS/SSL security, a official domain name, and active CloudWatch logging.
-* Delivered a seamless on-site receptionist workflow: Patient lookup and in-person payment processing are fast and accurate, eliminating reliance on online third-party payment gateways.
-* Automated appointment confirmation notifications (Email/SMS via AWS SES/SNS) function reliably and accurately.
-* Completed a comprehensive technical documentation suite, user manuals, and successfully passed the final project acceptance review on schedule.
+* Successfully containerized applications using Docker and set up a CI/CD pipeline, achieving 100% automated deployment onto AWS cloud infrastructure.
+* System operates stably in the Production environment with complete HTTPS/SSL security certificates, official domain routing, and active CloudWatch system monitoring.
+* Perfectly finalized Desktop Portal business flows: Administrators smoothly onboard/assign roles to Doctors and configure availability calendars; Doctors effectively utilize summarized AI Reports (Split View) and push diagnoses/prescriptions to Patient Mobile Apps instantly.
+* Automated Email/SMS dispatching for appointment confirmations and account activations via AWS SES/SNS/Cognito operates reliably and accurately.
+* Completed a full suite of technical documentation, operational user manuals, and successfully handed over the project on schedule.
