@@ -1,4 +1,4 @@
----
+[---
 title: "Nhật ký công việc"
 date: 2024-01-01
 weight: 1
@@ -23,3 +23,4 @@ Trang này tổng quan lại toàn bộ nhật ký công việc (Worklog) trong 
 **Tuần 7:** [Kiểm thử hệ thống, tối ưu hiệu năng và cải thiện trải nghiệm người dùng](1.7-week7/)
 
 **Tuần 8:** [Hoàn thiện hệ thống và tài liệu, demo sản phẩm, tổng kết và đánh giá](1.8-week8/)
+](http://localhost:1313/)
