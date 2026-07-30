@@ -6,28 +6,29 @@ chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
-
 ### Mục tiêu tuần 2:
 
-* Thiết kế cơ sở dữ liệu và xây dựng cấu trúc các Module cốt lõi cho Backend (NestJS) của ứng dụng Web Healthcare.
-* Lập trình các API RESTful quan trọng: Đăng ký/Đăng nhập (Authentication với JWT), Quản lý thông tin bác sĩ, Đặt lịch khám và Quản lý hồ sơ bệnh nhân.
-* Phát triển giao diện người dùng Frontend (Next.js) cho các luồng công việc chính: Trang chủ, Tra cứu bác sĩ/chuyên khoa, Biểu mẫu đặt lịch hẹn.
-* Tích hợp kết nối API giữa Frontend và Backend, xử lý CORS, đồng bộ trạng thái dữ liệu (State Management) và Container hóa ứng dụng bằng Docker Compose để chạy cục bộ.
+* Thiết kế sơ đồ ERD cho cơ sở dữ liệu quan hệ (PostgreSQL) và xây dựng cấu trúc các Module cốt lõi cho Backend NestJS.
+* Tích hợp **AWS Cognito SDK** ở Backend để xử lý luồng xác thực (Authentication & Authorization) cho 3 nhóm vai trò: Admin, Bác sĩ và Bệnh nhân theo chuẩn RBAC.
+* Lập trình các API RESTful quan trọng theo Business Flow v2: API Admin Onboarding Bác sĩ (khởi tạo tài khoản & gửi Temporary Password qua SES), API Bệnh nhân đăng ký (tự động gán role `Patient`), và API điền Form khai báo y tế ban đầu.
+* Phát triển giao diện Responsive người dùng Frontend (Next.js 14) cho các luồng: Doctor Portal (đăng nhập Temp Password & bắt buộc đổi mật khẩu lần đầu, thiết lập lịch trống) và Patient Mobile Web App (Form khai báo y tế ban đầu full-screen).
+* Kết nối API Frontend - Backend, xử lý CORS, đồng bộ trạng thái (React Query) và Container hóa ứng dụng bằng Docker Compose để chạy cục bộ.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu  |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2   | - Thiết kế sơ đồ quan hệ cơ sở dữ liệu (ERD) cho ứng dụng Y tế (Bệnh nhân, Bác sĩ, Khung giờ khám, Lịch hẹn) <br> - Khởi tạo cấu trúc các Module, Controller và Service trong NestJS | 08/06/2026 | 08/06/2026 | [Tại đây](<https://cloudjourney.awsstudygroup.com/>) |
-| 3   | - Xây dựng Module Authentication trong NestJS (sử dụng Passport.js và JWT) phục vụ xác thực người dùng <br> - Phát triển các RESTful API cốt lõi: Danh sách bác sĩ, Tạo lịch hẹn mới, Cập nhật trạng thái lịch hẹn | 09/06/2026 | 09/06/2026 | [Tại đây](<https://docs.nestjs.com/>) |
-| 4   | - Xây dựng giao diện ứng dụng Web bằng Next.js và TailwindCSS <br> - Thiết kế các trang chức năng: Trang chủ tìm kiếm bác sĩ, Trang thông tin chi tiết dịch vụ khám, Form điền thông tin bệnh nhân và chọn khung giờ | 10/06/2026 | 10/06/2026 | [Tại đây](<https://nextjs.org/docs>) |
-| 5   | - Tích hợp gọi API từ Next.js sang NestJS Backend bằng Axios/Fetch API <br> - Cấu hình middleware xử lý CORS, kiểm tra quyền truy cập (Guards/Protected Routes) và lưu trữ Token an toàn ở Client | 11/06/2026 | 11/06/2026 | [Tại đây](<https://cloudjourney.awsstudygroup.com/>) |
-| 6   | - Viết file Dockerfile cho ứng dụng Frontend Next.js và Backend NestJS <br> - Tạo file docker-compose.yml để đóng gói toàn bộ ứng dụng và khởi chạy môi trường Web đầy đủ ở local | 12/06/2026 | 12/06/2026 | [Tại đây](<https://docs.docker.com/>) |
+| 2   | - Thiết kế sơ đồ ERD chi tiết cho PostgreSQL (Bệnh nhân, Khai báo y tế, Bác sĩ, Khung giờ làm việc, Lịch hẹn).<br>- Khởi tạo cấu trúc các Module, Controller và Service trong NestJS (AuthModule, UserModule, DoctorModule, PatientModule). | 08/06/2026 | 08/06/2026 | [Tại đây](<https://cloudjourney.awsstudygroup.com/>) |
+| 3   | - Tích hợp **AWS Cognito SDK** vào NestJS AuthModule: Viết middleware verify JWT Token qua Public Key của Cognito.<br>- Xây dựng RESTful API cho **Giai đoạn 1 & 2**: Admin tạo tài khoản Bác sĩ (gửi Temporary Password qua AWS SES), API cho Bác sĩ đổi mật khẩu ở lần đăng nhập đầu tiên, và API Bệnh nhân điền Form khai báo y tế ban đầu (tuổi, nhóm máu, bệnh nền, dị ứng). | 09/06/2026 | 09/06/2026 | [Tại đây](<https://docs.nestjs.com/>) |
+| 4   | - Xây dựng giao diện Web Next.js 14 & TailwindCSS chuẩn hóa theo Business Flow v2.<br>- Thiết kế **Doctor Portal (Desktop)**: Giao diện đổi mật khẩu lần đầu, màn hình "Thiết lập Lịch trống" trong tuần.<br>- Thiết kế **Patient App (Mobile)**: Form khai báo y tế ban đầu toàn màn hình (Full-screen View). | 10/06/2026 | 10/06/2026 | [Tại đây](<https://nextjs.org/docs>) |
+| 5   | - Tích hợp gọi API từ Next.js 14 sang NestJS Backend bằng Axios & React Query.<br>- Cấu hình NestJS Guards/Middleware kiểm tra Token JWT từ Cognito, xử lý phân quyền (Patient/Doctor/Admin) và xử lý CORS. | 11/06/2026 | 11/06/2026 | [Tại đây](<https://cloudjourney.awsstudygroup.com/>) |
+| 6   | - Viết file Dockerfile cho ứng dụng Frontend Next.js 14 và Backend NestJS.<br>- Tích hợp container PostgreSQL cục bộ để đóng gói và khởi chạy toàn bộ ứng dụng ở môi trường Local. | 12/06/2026 | 12/06/2026 | [Tại đây](<https://docs.docker.com/>) |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Hoàn thành sơ đồ cơ sở dữ liệu ERD chi tiết cho hệ thống Web Healthcare, định hình rõ cấu trúc dữ liệu cho bệnh nhân và bác sĩ.
-* Xây dựng thành công bộ API RESTful cốt lõi ở Backend NestJS hỗ trợ xác thực bảo mật bằng JWT và xử lý logic đặt lịch khám.
-* Hoàn thiện giao diện ứng dụng Web tương tác ở Frontend với Next.js, đáp ứng tốt trải nghiệm người dùng khi tra cứu và chọn lịch hẹn.
-* Tích hợp thành công luồng gọi API end-to-end từ Frontend đến Backend, xử lý mượt mà các trường hợp phân quyền và lỗi CORS.
-* Container hóa thành công cả ứng dụng Frontend và Backend với Docker Compose, sẵn sàng cho việc triển khai lên hạ tầng AWS ở Tuần 3.
+* Hoàn thành sơ đồ cơ sở dữ liệu ERD cho PostgreSQL, định hình rõ các bảng lưu trữ thông tin y tế nhạy cảm và lịch làm việc của bác sĩ.
+* Xây dựng thành công hệ thống xác thực chuẩn hóa qua **AWS Cognito**, xử lý mượt mà luồng Temporary Password cho nhân viên y tế và Onboarding tự động cho bệnh nhân.
+* Hoàn thiện giao diện Next.js 14 đáp ứng đúng Business Flow: Form khai báo y tế ban đầu cho Bệnh nhân trên Mobile và màn hình Kích hoạt tài khoản/Thiết lập lịch trống cho Bác sĩ trên Desktop.
+* Tích hợp kết nối end-to-end mượt mà giữa Frontend và Backend, xử lý phân quyền RBAC chặt chẽ thông qua Cognito Public Key verification.
+* Container hóa thành công hệ thống với Docker Compose, sẵn sàng cho bước triển khai hạ tầng Cloud AWS ở Tuần 3.
+
