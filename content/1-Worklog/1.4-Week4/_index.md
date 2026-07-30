@@ -8,26 +8,28 @@ pre: " <b> 1.4. </b> "
 
 ### Week 4 Objectives:
 
-* Provision and integrate the relational database management system **Amazon RDS (PostgreSQL/MySQL)** to store structured data for the Healthcare Web Application (user information, appointment schedules, doctor details).
-* Initialize and configure the NoSQL database **Amazon DynamoDB** to store high-frequency or flexible read/write data (Chatbot conversation history, user sessions).
-* Configure secure network partitioning (VPC Private Subnet, Subnet Groups) and Security Groups for RDS to ensure the database is accessible exclusively from the EC2 Backend Server.
-* Integrate an ORM (TypeORM/Prisma) into the NestJS Backend application to connect and query data from Amazon RDS, alongside the AWS SDK for DynamoDB.
+* Provision and integrate the **Amazon RDS (PostgreSQL)** relational database management system with data encryption to store structured data (account information, initial medical declaration profiles, doctor availability calendars, appointment schedules, and diagnosis/prescription results).
+* Provision and configure the **Amazon DynamoDB** NoSQL database to store real-time AI Triage Chatbot conversation histories and pre-consultation medical summary reports.
+* Establish a **Concurrency Control & Database Locking** mechanism (Row-level lock in PostgreSQL) on the NestJS Backend to handle race conditions and prevent double-booking when patients select appointment time slots.
+* Configure secure network partitioning (VPC Private Subnet, DB Subnet Groups) and Security Groups for RDS to ensure the database is accessible only internally from the EC2 Backend server.
+* Integrate an ORM (TypeORM/Prisma) into the NestJS Backend for Database Migration, connecting to and querying relational data on RDS, alongside the AWS SDK for DynamoDB.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Provision an **Amazon RDS Database Instance** (PostgreSQL/MySQL) via AWS Console in a Private Subnet <br> - Configure DB Subnet Group, setup Admin credentials, and enable Automated Backups feature | 22/06/2026 | 22/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Tue | - Create **Amazon DynamoDB Tables** (ChatHistory, UserSessions) with appropriate Partition Keys and Sort Keys <br> - Configure Auto-Scaling/On-Demand Capacity mode to optimize costs and processing performance for Chatbot data | 23/06/2026 | 23/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Wed | - Configure **RDS Security Group**: Restrict Inbound Traffic strictly to the EC2 Backend Security Group on port 5432 (PostgreSQL) or 3306 (MySQL) <br> - Perform database migration from local database to Amazon RDS | 24/06/2026 | 24/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Thu | - Integrate ORM (Prisma/TypeORM) into NestJS Backend to connect with Amazon RDS <br> - Integrate AWS DynamoDB SDK into the NestJS Chatbot Module to store and retrieve real-time patient-chatbot conversation history | 25/06/2026 | 25/06/2026 | [Here](<https://docs.nestjs.com/techniques/database>) |
-| Fri | - Conduct CRUD operations testing on both RDS and DynamoDB from Staging/EC2 environment <br> - Verify Connection Pooling performance and Encryption At-Rest (AWS KMS) across both database systems | 26/06/2026 | 26/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Mon | - Provision **Amazon RDS Instance (PostgreSQL)** on the AWS Console inside a Private Subnet.<br>- Configure DB Subnet Group, setup Admin credentials, enable storage encryption (At-Rest Encryption), and activate Automated Backups. | 06/22/2026 | 06/22/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Tue | - Provision tables on **Amazon DynamoDB** with optimal Partition Key/Sort Key for real-time querying.<br>- Configure Auto-Scaling/On-Demand Capacity mode to ensure minimum latency for AI Triage conversation read/write performance. | 06/23/2026 | 06/23/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Wed | - Configure **Security Group for RDS**: Accept Inbound Traffic exclusively from the EC2 Backend Security Group over port 5432.<br>- Build PostgreSQL Schema to store: Initial medical profiles (blood type, allergies), Doctor Availability Calendars, and Consultation Outcomes. Perform Data Migration. | 06/24/2026 | 06/24/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Thu | - Integrate ORM (Prisma/TypeORM) into NestJS Backend to connect to RDS PostgreSQL; implement **Database Transaction & Row-level Locking** mechanism to prevent double-booking.<br>- Integrate DynamoDB SDK into AI Chatbot Module to store conversation history and automatically retrieve aggregated Pre-consultation Report data. | 06/25/2026 | 06/25/2026 | [Here](<https://docs.nestjs.com/techniques/database>) |
+| Fri | - Perform testing of CRUD operations on RDS PostgreSQL and DynamoDB from EC2 Backend; execute concurrency load testing to prevent double-booking when multiple patients book the same time slot.<br>- Optimize Connection Pooling (using PgBouncer or ORM pool config) and verify database access permissions via IAM / KMS. | 06/26/2026 | 06/26/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
 
 
 ### Week 4 Achievements:
 
-* Successfully deployed **Amazon RDS** isolated within a Private Subnet, guaranteeing absolute security for healthcare databases and protecting against direct Internet attacks.
-* Successfully initialized **Amazon DynamoDB** for storing Chatbot message histories and user sessions with ultra-fast responsiveness (millisecond latency).
-* Completed Database Schema Migration and seamlessly connected the NestJS Backend application on EC2 to Amazon RDS using an ORM library.
-* Ensured strict security configuration via Security Groups that follow the principle of least privilege (only the EC2 Backend is allowed to access RDS).
-* Enabled patients to chat with the Chatbot and retrieve conversation history while securely preserving appointment data integrity on the AWS Cloud.
-* Fully prepared the data layer and complete application infrastructure, setting the stage for Week 5 integration with **AWS CloudWatch** monitoring and centralized log handling.
+* Successfully deployed **Amazon RDS PostgreSQL** entirely within a Private Subnet with secure data encryption, ensuring absolute security for patient medical declarations and prescriptions.
+* Successfully provisioned **Amazon DynamoDB** for storing AI Triage chat histories and Pre-consultation Reports with low millisecond latency.
+* Completed Database Migration on PostgreSQL, clearly defining Doctor Availability Calendars and Patient Medical Profiles.
+* Successfully applied **Row-level Lock / Transaction** mechanisms in the NestJS Backend, thoroughly resolving Race Condition (Double-booking) issues during concurrent appointment scheduling.
+* Ensured infrastructure security via strict Security Group isolation (allowing connections to RDS exclusively from the EC2 Backend).
+* Established a solid data foundation for the Doctor Portal (Split View mode: viewing AI summary reports alongside issuing prescriptions) and Patient Portal (checking examination results).
+* Fully prepared complete DB and Backend infrastructure, ready for Week 5 integration of **AWS CloudWatch** monitoring and centralized error handling.
