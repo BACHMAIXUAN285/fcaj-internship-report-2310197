@@ -6,28 +6,21 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Triển khai Nền tảng Hỗ trợ Khám bệnh & Quản lý Y tế Trực tuyến (MedFlow) trên AWS
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+Trong bài thực hành này, bạn sẽ tiến hành xây dựng và triển khai **Nền tảng Hỗ trợ Khám bệnh & Quản lý Y tế Trực tuyến (MedFlow)** trên hạ tầng điện toán đám mây AWS. Hệ thống được thiết kế theo chuẩn kiến trúc Cloud hiện đại, đáp ứng các tiêu chuẩn nghiêm ngặt về bảo mật dữ liệu y tế, khả năng xử lý thời gian thực và tích hợp Trí tuệ Nhân tạo (AI).
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
-
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+Hành trình thực hành được chia làm **4 module chiến lược** đại diện cho toàn bộ vòng đời phát triển một hệ thống Cloud-native:
++ **Triển khai Cơ sở Dữ liệu (Amazon Aurora & RDS):** Khởi tạo database PostgreSQL (`healthcare-db`) tối ưu chi phí với chip ARM Graviton2 (`db.t4g.micro`), mã hóa đường truyền bằng chứng chỉ SSL (`global-bundle.pem`) và tự động hóa đồng bộ Schema qua Prisma ORM.
++ **Triển khai Dịch vụ Xác thực & Phân quyền (AWS Cognito):** Quản lý định danh tập trung (User Pool `healthcare`) cho Bệnh nhân, Bác sĩ và Admin (RBAC). Đạt chuẩn an toàn dữ liệu y tế bằng **UUID ẩn danh (Anonymization)** và giải mã JWT bất đối xứng RSA qua **JWKS Endpoint**.
++ **Xây dựng & Triển khai Module AI (MedFlow AI):** Đóng gói và phát hành mô hình AI hỗ trợ sơ chẩn (AI Triage & Chatbot) trên **Amazon SageMaker Endpoint** để xử lý phân loại triệu chứng bệnh nhân theo thời gian thực.
++ **Triển khai Hệ thống (Fullstack Deployment on EC2):** Đóng gói Docker Containers cho Frontend (Next.js) và Backend (NestJS REST API & WebSocket Gateway) lên Amazon EC2, liên kết toàn bộ tài nguyên (RDS, Cognito, SageMaker, S3, SES/SNS, CloudWatch) trong mạng VPC.
 
 #### Nội dung
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Phần 1: Triển khai Cơ sở Dữ liệu (Amazon Aurora & RDS)](5.1-Aurora-and-RDS/)
+2. [Phần 2: Triển khai Dịch vụ Xác thực & Phân quyền (AWS Cognito)](5.2-Cognito/)
+3. [Phần 3: Xây dựng & Triển khai Module AI (MedFlow AI) Trên AWS](5.3-medflow-ai/)
+4. [Phần 4: Triển khai Hệ thống Fullstack lên EC2](5.4-deploy/)
