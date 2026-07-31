@@ -22,3 +22,5 @@ pre: " <b> 5.3.2. </b> "
      * Chọn phương thức **Fixed-size chunking** (Kích thước đoạn: 300 - 500 tokens, Overlap: 20%).
   5. **Cấu hình Vector Store**: Chọn tự động tạo **Amazon OpenSearch Serverless** vector index để lưu trữ các đoạn văn bản dưới dạng Vector Embeddings.
   6. Chọn **Sync** để tiến hành quét dữ liệu từ S3, phân đoạn (chunking) và đánh chỉ mục.
+
+  ![Bedrock](/images/5-Workshop/5.3-medflow-ai/bedrock.png)

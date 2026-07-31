@@ -54,4 +54,5 @@ Phần này hướng dẫn các bước lập trình tích hợp luồng RAG, c�
      logger.addHandler(watchtower.CloudWatchLogHandler(log_group="/aws/medflow/med-chatbot"))
      ```
 
+![Langfuse](/images/5-Workshop/5.3-medflow-ai/langfuse%20tracing%20router.png)
 ---

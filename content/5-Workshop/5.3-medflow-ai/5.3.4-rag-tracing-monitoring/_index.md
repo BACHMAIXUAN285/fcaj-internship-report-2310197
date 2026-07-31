@@ -1,54 +1,58 @@
 ---
-title: "Context Management, gRPC Streaming & Observability"
+title: "Integrating RAG, Langfuse Tracing & CloudWatch Logging"
 date: 2026-07-01
 weight: 4
 chapter: false
-pre: " <b> 4. </b> "
+pre: " <b> 5.3.4. </b> "
 ---
 
-To satisfy the stringent reliability requirements of production-grade healthcare environments, the **`medflow-ai`** module is built upon self-healing memory persistence, low-latency asynchronous transport, and comprehensive 24/7 telemetry monitoring.
-
----
-
-### 1. Self-Healing Persistent Conversational Memory (`SafePostgresChatMessageHistory`)
-
-In cloud deployments, connections to relational databases (PostgreSQL / NeonDB) frequently experience transient network interruptions or session timeouts. Utilizing standard database drivers risks wiping out the patient's entire diagnostic dialogue history during a consultation.
-
-The module resolves this via the custom `SafePostgresChatMessageHistory` memory class:
-- **Asynchronous Database I/O (`Async psycopg`)**: Leverages the modern `psycopg` driver supporting native asynchronous I/O, preventing the gRPC server from blocking during read/write transactions to the `chat_history` table.
-- **Automated Connection Self-Healing (Auto-reconnect)**: The `SafePostgresChatMessageHistory` class overrides the core `aget_messages` and `aadd_messages` methods. Prior to executing database transactions, the system checks the `_aconnection.closed` attribute and traps `OperationalError` exceptions. If a dropped connection is detected, the module instantly initializes a fresh connection to NeonDB within milliseconds, ensuring zero interruption to the clinical consultation workflow.
+This section provides a step-by-step programming guide to integrating the RAG workflow, setting up Tracing with Langfuse, and configuring system log shipping to AWS CloudWatch.
 
 ---
 
-### 2. Bi-directional gRPC Streaming Microservice (`LangGraphServicer`)
+### Integrating RAG Workflow & Tracing with Langfuse
 
-To completely circumvent HTTP protocol overhead (which is critical when LLMs require 1-2 seconds to generate complete responses), `medflow-ai` operates as a dedicated **gRPC Microservice** on port `50051`:
+* **Purpose**: Integrate data from ViMQ NER, query Bedrock KB, generate responses using GPT-4o-mini, and send traces to Langfuse.
+* **Step-by-step instructions**:
+  1. Integrate the `langchain-aws` SDK into the source code to query Bedrock KB:
+     ```python
+     from langchain_aws import AmazonKnowledgeBasesRetriever
 
-- **Protobuf Interface Specification (`triage.proto`)**: Data schemas between the FastAPI Gateway and the AI server are strictly compiled via `triage.proto`, maximizing network payload efficiency.
-- **Bi-directional Streaming**: Through the `LangGraphServicer` service implementation, the instant the LLM Generator produces a token, it is wrapped in a `ChatChunk(token=...)` message and streamed back over the active gRPC channel. Patients experience fluid, word-by-word real-time token streaming without perceived latency.
-- **Windows Event Loop Compatibility**: The server codebase integrates customized asyncio event loop management, resolving `ProactorEventLoop` concurrency crashes commonly encountered when running asynchronous streaming microservices on Windows hosting environments.
+     retriever = AmazonKnowledgeBasesRetriever(
+         knowledge_base_id="YOUR_BEDROCK_KB_ID",
+         retrieval_config={"vectorSearchConfiguration": {"numberOfResults": 3}}
+     )
+     ```
+  2. Configure the Langfuse Callback to monitor LLM call details and latency:
+     ```python
+     from langfuse.callback import CallbackHandler
 
----
-
-### 3. Comprehensive Telemetry & Observability
-
-A clinical AI system cannot operate as an unmonitored black box. We implement a dual-layer observability architecture capturing both AI inference performance and system health:
-
-```text
-[gRPC Server / LLM Generation Stream]
-          │
-          ├──(1) LLM Callbacks ──> [Langfuse Cloud Platform] (TTFT Latency, Token Cost, Tracing)
-          │
-          └──(2) System / Error Logs ──> [AWS CloudWatch Logs] (Group: med-chatbot | Stream: gRPC-Server)
-```
-
-1. **AI Observability via Langfuse**:
-   - Directly embeds `Langfuse Callback Handlers` into every LangChain RAG execution pipeline.
-   - The Langfuse dashboard records granular execution trees, benchmarking **Time-to-First-Token (TTFT)** latency (< 200ms), AWS Bedrock retrieval duration, and automating token cost accounting (FinOps) per clinical session.
-
-2. **System Log Governance via AWS CloudWatch (`watchtower`)**:
-   - Employs the `watchtower` logging library to automatically forward system execution logs, security alerts, and gRPC exceptions to AWS CloudWatch.
-   - Logs are aggregated within the **`med-chatbot`** Log Group under the **`gRPC-Server`** stream. This enables DevOps engineers to configure CloudWatch Alarms for immediate anomaly detection across the Cloud RAG infrastructure.
+     langfuse_handler = CallbackHandler(
+         public_key="pk-lf-...",
+         secret_key="sk-lf-...",
+         host="[https://cloud.langfuse.com](https://cloud.langfuse.com)"
+     )
+     ```
+  3. Build the complete workflow in `grpc_server.py`:
+     * Extract keywords via ViMQ -> Route intent -> Query Bedrock KB for context -> Call LLM to synthesize response -> Stream tokens back to the gRPC Client.
 
 ---
-*Proceed to the next section: **[5. Unique Selling Points (USPs) of medflow-ai](../5.3.5-unique-selling-points/)**.*
+
+### Configuring Log Monitoring on AWS CloudWatch
+
+* **Purpose**: Record all System Logs, Error Logs, and gRPC Server activity logs to CloudWatch.
+* **Step-by-step instructions**:
+  1. Access the **Amazon CloudWatch Console**. Navigate to **Logs** and select **Log groups**.
+  2. Click **Create log group** with the name: `/aws/medflow/med-chatbot`.
+  3. In the `grpc_server.py` source code, configure the `watchtower` or `boto3` library to automatically push logs during application runtime:
+     ```python
+     import logging
+     import watchtower
+
+     logging.basicConfig(level=logging.INFO)
+     logger = logging.getLogger("MedFlowAI")
+     logger.addHandler(watchtower.CloudWatchLogHandler(log_group="/aws/medflow/med-chatbot"))
+     ```
+
+![Langfuse](/images/5-Workshop/5.3-medflow-ai/langfuse%20tracing%20router.png)
+---
