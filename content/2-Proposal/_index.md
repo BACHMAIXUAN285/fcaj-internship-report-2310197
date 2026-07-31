@@ -6,107 +6,103 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-In this section, you will find a summary of the Digital Healthcare system development project proposal, including objectives, AWS Cloud infrastructure architecture, core business flows, and operational budget estimates.
+In this section, you will find a summary proposal for the development of the Digital Healthcare System, including objectives, AWS Cloud infrastructure architecture, core business flows, and estimated operational budgets.
 
 # Smart Healthcare AI Triage & Appointment Booking Platform
 ## Cloud-native Solution for AI-Powered Medical Triage and Online Appointment Management
 
 ### 1. Executive Summary
-The Smart Healthcare Platform is designed to modernize the intake, initial triage, and appointment booking processes at clinics and hospitals. The system leverages artificial intelligence (AI) models hosted on **Amazon SageMaker** to classify patient symptoms across 3 risk levels (Red - Yellow - Green) while automatically generating a **Pre-consultation Report** prior to examination sessions. Built on a Microservices/Cloud-native architecture on the **AWS Cloud** platform (Cognito, EC2, RDS PostgreSQL, S3, CloudWatch, SES/SNS), the platform serves thousands of concurrent visits from patients, doctors, and receptionists/administrators.
+The Smart Healthcare Platform is designed to modernize the intake process, handle preliminary medical Q&A, and facilitate online appointment bookings. The system incorporates a **Generative AI & RAG (Retrieval-Augmented Generation)** architecture combining **AWS Bedrock Knowledge Base**, the **ViMQ** medical entity extraction model, and the **GPT-4o-mini** LLM, while supporting the storage of **Pre-consultation Reports** generated from conversation summaries. Built on a Cloud-native architecture over **AWS Cloud** infrastructure (Cognito, EC2, RDS PostgreSQL, S3, CloudWatch) integrated with a dedicated LLM monitoring system (**Langfuse**), the platform serves the access needs of Patients, Doctors, and Administrators.
 
 ### 2. Problem Statement
 #### What’s the Problem?
-Healthcare facilities currently face severe overcrowding at reception desks. Traditional appointment booking processes via phone or walk-ins frequently cause schedule collisions (Double-booking) and prolonged patient wait times. Additionally, doctors spend significant time re-asking basic symptoms due to a lack of pre-collected information.
+Healthcare facilities currently experience reception desk congestion because patients spend significant time inquiring about basic information. Traditional appointment booking processes via telephone or walk-ins frequently cause double-booking issues and extended waiting times. On the doctors' side, tracking appointment schedules and registered patient information remains manual and fragmented.
 
 #### The Solution 
-The platform provides a comprehensive solution covering 5 closed-loop business stages:
-1. **Stage 1 - System Setup & Account Provisioning:** Admins create doctor profiles on the Admin Portal. **AWS Cognito** combined with **AWS SES** automatically sends an Email containing a Temporary Password. Doctors log into the Doctor Portal and are forced to set a new password on their first login before configuring their availability schedule.
-2. **Stage 2 - Patient Onboarding:** Patients register an account on the Mobile Web App (default assigned role: `Patient`). Upon first login, patients fill out an Initial Medical Declaration Form (age, blood type, medical history, allergies) which is encrypted and stored in the database.
-3. **Stage 3 - AI Symptom Triage Assistant (Triage Flow):** The AI Bot (on **Amazon SageMaker**) communicates via WebSocket to gather symptoms and categorize them into 3 severity levels:
-   - 🔴 **Red Level (Emergency):** Disables the chat window and displays a prominent button to call 115 Emergency immediately.
-   - 🟢 **Green Level (Mild):** Provides home self-care guidelines and automatically terminates the chat session.
-   - 🟡 **Yellow Level (Medical Consultation Needed):** Displays a UI Card recommending appointment booking directed to the appropriate specialty.
-4. **Stage 4 - Specialty Appointment Booking (Booking Flow):** Patients select a time slot via a Bottom Sheet UI. **AWS RDS PostgreSQL** applies row-level locking (**Pessimistic Locking**) to eliminate 100% of double-booking risks (Race Conditions). The system automatically summarizes the conversation into a **Pre-consultation Report** stored in **Amazon S3** and sends a confirmation QR code via Email/SMS through **AWS SES/SNS**.
-5. **Stage 5 - Consultation & Diagnosis Session (Consultation Flow):** Doctors access the Doctor Portal featuring a **Split View** layout (one side displays Past Records + AI Summary Report, the other side features diagnosis/prescription entry forms). Consultations occur via Telehealth or in-person, after which results are automatically pushed to the patient's Mobile App.
+The platform provides a comprehensive solution covering end-to-end business phases:
+1. **Phase 1 - System Setup & Authorization (Auth Flow):** Admins manage and provision accounts on the system. **AWS Cognito** handles centralized identity management (RBAC), providing strict access control for Patient, Doctor, and Admin roles.
+2. **Phase 2 - Intake & Medical Onboarding:** Patients register/log in via the Mobile Web App. Patients can complete intake forms detailing personal information, medical history, and core health metrics.
+3. **Phase 3 - AI RAG Medical Assistant (LLM Pipeline Flow):**
+   - The [LLM Intent Router] receives questions and orchestrates processing: extracting medical entities via **ViMQ (Local Host)** and routing intent via **AWS Bedrock Knowledge Base**.
+   - The **GPT-4o-mini** model synthesizes knowledge and responds with accurate answers for the patient.
+   - The entire conversation flow is logged, with performance and token metrics monitored via **Langfuse** and **AWS CloudWatch**.
+4. **Phase 4 - Specialist Appointment Booking (Booking Flow):** Patients proactively select a doctor and an open time slot. **AWS RDS PostgreSQL** applies **Pessimistic Locking** mechanisms to eliminate 100% of double-booking risks (Race Conditions). Consultation chats can be automatically compiled into a **Pre-consultation Report** file stored in **Amazon S3**.
+5. **Phase 5 - Schedule Lookup & Management (Doctor/Patient Portal):** Doctors log into the Portal to review booked appointment schedules and look up patient personal information and medical history.
 
 #### Benefits and Return on Investment (ROI)
-- Reduces waiting times at reception by up to 60% through automated QR check-in and self-onboarding processes.
-- Boosts doctor productivity by 30% utilizing the Split View interface and AI-generated Pre-consultation Reports.
-- Eliminates 100% of appointment slot collision risks using Pessimistic Locking at the database layer.
-- Optimizes infrastructure costs through AWS Cloud elasticity based on real-time traffic demand.
+- Reduce initial reception consultation time by 60% through 24/7 automated AI RAG inquiry responses delivering precise medical data.
+- Enable Doctors to seamlessly manage their daily work schedules and patient lists.
+- Eliminate 100% of appointment double-booking risks via Database-level Pessimistic Locking.
+- Guarantee AI response quality and safety via a centralized LLM monitoring system (**Langfuse**).
+- Optimize infrastructure operational costs thanks to the elastic scaling capabilities of AWS Cloud services.
 
 ### 3. Solution Architecture
-The system uses a Multi-tier Web architecture on AWS Cloud, divided into 3 main layers: Frontend (Next.js 14 Responsive), Backend Service (NestJS on EC2), and AI Services (Amazon SageMaker).
+The system utilizes a Multi-tier Web architecture combined with Hybrid AI services (Cloud Services + External SaaS + Local Host Services).
 
-![Smart Healthcare AI Architecture](/images/2-Proposal/architecture-diagram.png)
+![Smart Healthcare AI Architecture](/images/2-Proposal/architect-diagram.png)
 
-<!--
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
-
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
--->
-
-#### AWS Services Used
-- *Amazon Cognito*: Identity management, sign-in/sign-up, RBAC authorization, and temporary password flows for medical staff.
-- *AWS EC2*: Deploys the Web Frontend (Next.js) and Backend REST API / WebSocket Gateway (NestJS) via Docker Containers.
-- *Amazon SageMaker*: Endpoint hosting the AI model for 3-tier symptom classification and medical report generation.
-- *Amazon RDS (PostgreSQL)*: Relational database storing patient, doctor, and schedule data with Pessimistic Locking mechanics.
-- *Amazon S3*: Object storage for static files, AI-generated Pre-consultation Reports, prescriptions, and lab test results.
-- *AWS CloudWatch*: Aggregates system logs, monitors CPU/Memory utilization, and tracks AI Inference metrics.
-- *AWS SES / SNS*: Automates delivery of Temporary Password emails to Doctors and appointment confirmation Email/SMS containing check-in QR codes to Patients.
+#### AWS Services & Technologies Used
+- *Amazon Cognito*: Identity management, sign-in/sign-up, and RBAC authorization for Patients, Doctors, and Admins.
+- *AWS EC2*: Hosts the Web Frontend (Next.js) and Backend REST API / WebSocket Gateway / LLM Intent Router (NestJS) containerized via Docker.
+- *AWS Bedrock Knowledge Base*: Stores and retrieves medical knowledge bases (RAG Pipeline) for consultation.
+- *External SaaS & Local Models*: **GPT-4o-mini** (response generation), **ViMQ Local Host** (NER medical entity extraction), and **Langfuse** (monitoring LLM metrics, latency, and tokens).
+- *Amazon RDS (PostgreSQL)*: Relational database storing patient details, doctor information, and appointments with Pessimistic Locking (`FOR UPDATE`) mechanisms.
+- *Amazon S3*: Stores static assets, consultation chat history reports (PDF/JSON), and file attachments.
+- *AWS CloudWatch*: Collects Backend and EC2 system logs alongside aggregated logs from Langfuse.
 
 #### Component Design
-- *Patient Interface (Next.js - Mobile View)*: Enables initial medical declarations, AI Triage chat, appointment booking via Bottom Sheet UI, and receipt of confirmation QR codes.
-- *Medical Staff Interface (Next.js - Desktop View)*:  
-  - **Doctor Portal:** Temp Password sign-in, forced first-time password change, availability calendar setup, appointment list review, and consultations via **Split View** (AI Report Profile + Diagnostic Form).
-  - **Admin & Reception Portal:** Staff management/doctor onboarding, QR code patient check-in, service invoicing, and over-the-counter payment collection.
-- *Backend Microservices (NestJS)*: Handles Business Logic, WebSocket Gateway (AI Chat & Telehealth Signaling), and AWS RDS PostgreSQL database connections.
+- *Patient Interface (Next.js - Mobile View)*: Allows patients to update personal profiles, chat with the AI RAG Assistant for medical inquiries, and perform appointment bookings.
+- *Doctor Interface (Next.js - Desktop View)*: Enables Doctors to log in, look up scheduled appointments, review patient medical backgrounds, and view AI consultation report files from S3.
+- *Admin Portal*: Manages doctor directories, user accounts, and views operational analytics reports.
+- *Backend Services (NestJS)*: Handles Business Logic, LLM Intent Router, RDS PostgreSQL database connections, S3, and AI APIs (Bedrock, GPT-4o-mini, ViMQ, Langfuse).
 
 ### 4. Technical Implementation
 **Implementation Phases**  
-The project is deployed over **8 weeks** (2 months) across the following phases:  
-1. *Weeks 1 - 2*: Business Flow requirements analysis, AWS Cloud architecture design, Database ERD design, and Base Source Code initialization (Next.js 14 + NestJS).
-2. *Weeks 3 - 4*: AWS Cognito configuration (Temp Password flow), AWS Infrastructure deployment (EC2, S3, RDS PostgreSQL), TypeORM integration, and concurrency control handling (Pessimistic Locking).
-3. *Weeks 5 - 6*: Amazon SageMaker 3-tier AI Triage model integration via WebSocket, S3 Pre-consultation Report generation, Doctor Portal (Split View) & Patient Mobile UI completion.
-4. *Weeks 7 - 8*: AWS CloudWatch integration, stress testing (Race Condition verification), Docker container packaging, GitHub Actions CI/CD setup, and project handover acceptance.
+The project is scheduled for deployment over **8 weeks** (2 months) across the following phases:  
+1. *Weeks 1 - 2*: Analyze Business Flow requirements, design AWS Hybrid AI Cloud Architecture, construct Database ERD, and initialize Base Source Code (Next.js + NestJS).
+2. *Weeks 3 - 4*: Configure AWS Cognito (RBAC Auth Flow), deploy AWS infrastructure (EC2, S3, RDS PostgreSQL), integrate Prisma ORM, and implement concurrency control (Pessimistic Locking).
+3. *Weeks 5 - 6*: Integrate RAG Pipeline (AWS Bedrock KB + GPT-4o-mini + ViMQ Local), connect Langfuse for LLM monitoring, complete Doctor lookup interfaces & Patient booking views.
+4. *Weeks 7 - 8*: Integrate AWS CloudWatch, perform load testing (Stress Test Concurrency Booking), package Docker containers, configure CI/CD pipelines, and finalize project hand-off.
 
 **Technical Requirements**
-- *Frontend*: Next.js 14, TailwindCSS, Socket.io-client, React Query.
-- *Backend*: NestJS Framework, TypeORM/Prisma, TypeScript, Socket.io.
-- *Database*: PostgreSQL 16.x on AWS RDS (Private Subnet).
-- *AI/ML*: Python, Amazon SageMaker Endpoints.
+- *Frontend*: Next.js, TailwindCSS, Socket.io-client, React Query.
+- *Backend*: NestJS Framework, Prisma ORM, TypeScript, Socket.io.
+- *Database*: PostgreSQL 16.x on AWS RDS (`db.t4g.micro` - Private Subnet).
+- *AI/ML*: AWS Bedrock KB, OpenAI API (GPT-4o-mini), ViMQ Local Service, Langfuse.
 - *DevOps*: Docker, AWS CLI, GitHub Actions (CI/CD).
 
 ### 5. Timeline & Milestones
 *Project Timeline*
-- *Phase 1 (Weeks 1 - 2)*: Complete System Architecture & Database Schema designs according to Business Flow.
-- *Phase 2 (Weeks 3 - 4)*: Successfully deploy AWS infrastructure (Cognito Auth Flow, RDS PostgreSQL, S3, EC2) & Booking Concurrency API.
-- *Phase 3 (Weeks 5 - 6)*: Successfully integrate SageMaker AI Triage, finalize Doctor Split View Portal & AWS CloudWatch.
-- *Phase 4 (Weeks 7 - 8)*: Complete concurrency load stress tests, deploy CI/CD on AWS Cloud, and achieve final project acceptance sign-off.
+- *Phase 1 (Weeks 1 - 2)*: Complete System Architecture & Database Schema designs according to the updated Business Flow.
+- *Phase 2 (Weeks 3 - 4)*: Successfully deploy AWS infrastructure (Cognito Auth Flow, RDS PostgreSQL, S3, EC2) & Booking Concurrency APIs.
+- *Phase 3 (Weeks 5 - 6)*: Successfully integrate RAG Pipeline (Bedrock + GPT-4o-mini + ViMQ), Langfuse monitoring, and Doctor schedule lookup portals.
+- *Phase 4 (Weeks 7 - 8)*: Complete concurrency booking stress tests, deploy CI/CD pipelines on AWS Cloud, and achieve project acceptance.
 
 ### 6. Budget Estimation
-Infrastructure costs are estimated based on AWS Cloud environment pricing for the testing phase (MVP / Development Phase):
+Infrastructure costs are estimated based on an AWS Cloud & AI Services environment for the testing phase (MVP / Development Phase):
 
-*Monthly AWS Infrastructure Cost Breakdown*  
-- *AWS RDS (db.t3.micro - PostgreSQL)*: ~$15.00 USD/month (Single-AZ, 20 GB Storage).
-- *AWS EC2 (t3.small - Backend & Frontend)*: ~$14.00 USD/month (Running 24/7).
-- *Amazon SageMaker (ml.t3.medium Endpoint)*: ~$36.00 USD/month (Serverless/On-demand AI Inference).
+*Monthly Infrastructure & Service Cost Breakdown*  
+- *AWS RDS (db.t4g.micro - PostgreSQL)*: ~$12.00 USD/month (Single-AZ, ARM Graviton2).
+- *AWS EC2 (t3.small - Backend & Frontend)*: ~$14.00 USD/month (Running Docker 24/7).
+- *AWS Bedrock Knowledge Base*: ~$10.00 USD/month (Vector Storage & Search Query costs).
+- *OpenAI API (GPT-4o-mini)*: ~$5.00 USD/month (Token costs based on actual usage).
 - *Amazon S3 Standard*: ~$0.50 USD/month (5 GB Data Storage & Transfer).
-- *Amazon Cognito*: $0.00 USD/month (Free tier covers up to 50,000 MAU).
-- *AWS CloudWatch & SES/SNS*: ~$2.00 USD/month (Metrics, Logs, Alarms & Automated Emails).
+- *Amazon Cognito*: $0.00 USD/month (First 50,000 MAUs Free).
+- *AWS CloudWatch & Langfuse*: ~$3.00 USD/month (Metrics, Logs, Alarms & LLM Monitoring).
 
-*Total Estimated Cloud Infrastructure Cost*: ~$67.50 USD/month.
+*Total Monthly Cloud & AI Infrastructure Cost*: ~$44.50 USD/month.
 
 ### 7. Risk Assessment
 #### Risk Matrix
-- Appointment slot collisions during concurrent bookings (Race Condition): High impact, Medium probability.
-- AI model connection timeouts (SageMaker Timeout): Medium impact, Low probability.
-- Patient medical data leaks (Data Privacy): Very High impact, Low probability.
+- Concurrent booking conflicts (Race Condition): High impact, medium probability.
+- Disconnected LLM APIs (OpenAI / Bedrock Timeout): Medium impact, low probability.
+- AI response hallucination of medical knowledge (Hallucination): High impact, low probability.
 
 #### Mitigation Strategies
-- *Race Condition*: Use Pessimistic Locking directly at the PostgreSQL Database layer during slot reservation.  
-- *AI Timeout*: Implement a Fallback mechanism — If the AI encounters an issue, the system automatically redirects patients to traditional manual doctor selection without breaking the user experience.  
-- *Data Privacy*: Encrypt initial medical data, utilize UUID strings instead of auto-incrementing IDs in URL parameters, and anonymize patient details when streaming logs to CloudWatch.
+- *Race Condition*: Apply Pessimistic Locking (`FOR UPDATE`) directly at the PostgreSQL Database layer during slot confirmation.  
+- *API Timeout & Fallback*: Build Fallback flows — If LLM APIs encounter failure, the system automatically transitions the patient to the direct Appointment Booking interface.  
+- *Hallucination Reduction & Monitoring*: Utilize RAG via **AWS Bedrock Knowledge Base** to isolate accurate medical data, combined with **Langfuse** to track response quality and trigger alerts on anomalous AI answers.
+
 ### 8. Expected Outcomes
-- **Technical Improvements:** Automate 80% of patient intake and routing processes; achieve > 99.9% system availability on the AWS Cloud platform.  
-- **Long-term Value:** Provide standardized data sources for epidemic analysis and forecasting; enable effortless multi-branch clinic chain expansion in the future.
+- **Technical Improvements:** Automate initial patient medical consultations using precise RAG AI; achieve system availability metrics > 99.9% on AWS Cloud.  
+- **Practical Value:** Provide a transparent and accurate appointment booking solution, empowering patients to manage their schedules while enabling doctors to easily manage daily consultation workflows.
