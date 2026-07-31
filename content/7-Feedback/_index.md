@@ -1,47 +1,45 @@
 ---
-title: "Sharing and Feedback"
-date: 2024-01-01
+title: "Feedback and Suggestions"
+date: 2026-07-01
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+### General Evaluation
 
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud AI Journey program. This will help the FCAJ team improve any shortcomings based on the following aspects:
+**1. Work Environment**  
+The work environment is very friendly and open. FCAJ members are always willing to support whenever I face difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus much better. However, I think that during events, there should be more multi-group activities so participants have more opportunities to network and learn from one another.
 
-### Overall Evaluation
+**2. Mentor & Team Admin Support**  
+The mentor provides very detailed guidance, explains clearly whenever I encounter misunderstandings, and constantly encourages me to ask questions—whether in group chats, office sessions, or events. The admin team effectively assists with procedures and documentation, creating favorable conditions for my work. I highly appreciate that my mentor allows me to try and resolve issues independently rather than simply providing direct answers.
 
-**1. Working Environment**  
-The working environment is very friendly and open. FCAJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+**3. Alignment Between Tasks and Academic Major**  
+Being able to freely choose our project allowed it to align well with my university coursework, while also expanding into new knowledge domains that I had not previously encountered or experienced in practice. As a result, I both consolidated my core knowledge and gained practical skills.
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+**4. Learning Opportunities & Skill Development**  
+Throughout the internship, I acquired many new skills, such as using project management tools, teamwork, and professional communication within a corporate setting. Attending events also allowed me to draw valuable lessons from the experiences shared by seniors, helping me better shape my academic focus and future career path.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**5. Culture & Team Spirit**  
+The company culture is very positive: everyone respects one another, working seriously while maintaining a pleasant and engaging atmosphere.
 
-**4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+**6. Internship Policies & Benefits**  
+Being able to register for office attendance on a weekly basis provides flexible scheduling options.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+### Additional Feedback Questions
 
----
+* **What satisfied you the most during your internship?**  
+  Seniors and fellow interns were always ready to help each other at any time. I particularly valued the mentoring approach: instead of hand-holding, they provided guidance that allowed me to gain hands-on experience, tackle challenges directly, and learn from mistakes.
 
-### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+* **What areas do you think the company could improve for future interns?**  
+  For weekday study sessions, there should be more seating capacity and additional available days for office registration. For events, activities could be more diverse, especially team-based activities that encourage cross-group networking and shared learning.
 
----
+* **If recommending to friends, would you advise them to intern here? Why?**  
+  Definitely yes. Not only do you get to interact with talented professionals in a highly professional environment, but you also gain invaluable new knowledge and hands-on experience directly from AWS.
 
-### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+
+### Suggestions & Aspirations
+
+* **Aspirations:** Following this 2-month summer internship, I hope to continue accompanying FCAJ in the upcoming period to keep learning and growing.
+* **Suggestions:** Improve the office attendance approval process to allow more frequent visits, avoiding long waiting periods like the recent stretch where I registered for all available days over 3 consecutive weeks without receiving an approval.
