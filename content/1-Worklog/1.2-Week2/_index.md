@@ -8,25 +8,26 @@ pre: " <b> 1.2. </b> "
 
 ### Week 2 Objectives:
 
-* Design the database schema and build core module structures for the Backend (NestJS) of the Healthcare Web Application.
-* Develop key RESTful APIs: Registration/Login (Authentication with JWT), Doctor Management, Appointment Booking, and Patient Record Management.
-* Develop Frontend user interfaces (Next.js) for primary workflows: Homepage, Doctor/Specialty Search, and Appointment Booking forms.
-* Integrate API connections between Frontend and Backend, handle CORS, synchronize data states (State Management), and containerize applications using Docker Compose for local development.
+* Design the ERD diagram for the relational database (PostgreSQL) and build the core Module structure for the NestJS Backend.
+* Integrate **AWS Cognito SDK** into the Backend to handle the Authentication & Authorization flow for 3 role groups: Admin, Doctor, and Patient based on RBAC standards.
+* Develop critical RESTful APIs according to Business Flow v2: Admin Doctor Onboarding API (account initialization & sending Temporary Passwords via SES), Patient Registration API (automatically assigning the `Patient` role), and Initial Medical Declaration Form API.
+* Develop Responsive Frontend User Interfaces (Next.js 14) for the following flows: Doctor Portal (Temp Password login & mandatory first-time password change, availability scheduling) and Patient Mobile Web App (full-screen initial medical declaration form).
+* Connect Frontend - Backend APIs, configure CORS, synchronize state (React Query), and containerize the application using Docker Compose for local deployment.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | --- | ---- | --- |
-| Mon | - Design Entity-Relationship Diagrams (ERD) for the Healthcare application (Patients, Doctors, Time Slots, Appointments) <br> - Initialize Module, Controller, and Service structures in NestJS | 08/06/2026 | 08/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Tue | - Build the Authentication Module in NestJS (using Passport.js and JWT) for user identity verification <br> - Develop core RESTful APIs: Doctor Directory, Create New Appointment, Update Appointment Status | 09/06/2026 | 09/06/2026 | [Here](<https://docs.nestjs.com/>) |
-| Wed | - Construct Web Application interfaces using Next.js and TailwindCSS <br> - Design functional pages: Doctor search homepage, Consultation service details page, Patient info form, and time-slot picker | 10/06/2026 | 10/06/2026 | [Here](<https://nextjs.org/docs>) |
-| Thu | - Integrate API requests from Next.js to NestJS Backend using Axios/Fetch API <br> - Configure CORS middleware, access permission checks (Guards/Protected Routes), and secure token storage on the Client | 11/06/2026 | 11/06/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
-| Fri | - Write Dockerfiles for Next.js Frontend and NestJS Backend applications <br> - Create docker-compose.yml file to package the entire application stack and run the complete web environment locally | 12/06/2026 | 12/06/2026 | [Here](<https://docs.docker.com/>) |
+| Mon | - Design detailed ERD diagram for PostgreSQL (Patients, Medical Declarations, Doctors, Working Hours, Appointments).<br>- Initialize Module, Controller, and Service structures in NestJS (AuthModule, UserModule, DoctorModule, PatientModule). | 06/08/2026 | 06/08/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Tue | - Integrate **AWS Cognito SDK** into NestJS AuthModule: Write middleware to verify JWT Tokens using Cognito's Public Key.<br>- Build RESTful APIs for **Phases 1 & 2**: Admin creates Doctor account (sends Temporary Password via AWS SES), API for Doctors to change password on first login, and API for Patients to fill out the initial medical declaration form (age, blood type, underlying conditions, allergies). | 06/09/2026 | 06/09/2026 | [Here](<https://docs.nestjs.com/>) |
+| Wed | - Build Next.js 14 & TailwindCSS Web interfaces standardized to Business Flow.<br>- Design **Doctor Portal (Desktop)**: First-time password change interface, weekly "Set Availability" screen.<br>- Design **Patient App (Mobile)**: Full-screen initial medical declaration form (Full-screen View). | 06/10/2026 | 06/10/2026 | [Here](<https://nextjs.org/docs>) |
+| Thu | - Integrate API calls from Next.js 14 to NestJS Backend using Axios & React Query.<br>- Configure NestJS Guards/Middleware to verify JWT Tokens from Cognito, enforce role-based access control (Patient/Doctor/Admin), and handle CORS. | 06/11/2026 | 06/11/2026 | [Here](<https://cloudjourney.awsstudygroup.com/>) |
+| Fri | - Write Dockerfiles for Next.js 14 Frontend and NestJS Backend applications.<br>- Integrate local PostgreSQL container to package and launch the entire application in the Local environment. | 06/12/2026 | 06/12/2026 | [Here](<https://docs.docker.com/>) |
 
 
 ### Week 2 Achievements:
 
-* Completed detailed database ERD diagrams for the Healthcare Web system, establishing clear data structures for patients and doctors.
-* Successfully developed core Backend RESTful APIs in NestJS supporting secure JWT authentication and appointment scheduling logic.
-* Completed responsive and interactive Web UI on the Frontend using Next.js, providing a smooth user experience for browsing and booking appointments.
-* Successfully integrated end-to-end API calls from Frontend to Backend, seamlessly handling authorization flows and CORS rules.
-* Containerized both Frontend and Backend applications with Docker Compose, preparing them for AWS Cloud deployment in Week 3.
+* Successfully completed the ERD database schema for PostgreSQL, clearly defining tables storing sensitive medical records and doctor working schedules.
+* Successfully built a standardized authentication system via **AWS Cognito**, smoothly handling the Temporary Password flow for medical personnel and automated Onboarding for patients.
+* Completed Next.js 14 interfaces matching Business Flow requirements: Initial medical declaration form for Patients on Mobile and Account Activation/Availability Setup screens for Doctors on Desktop.
+* Achieved smooth end-to-end API integration between Frontend and Backend, strictly enforcing RBAC authorization via Cognito Public Key verification.
+* Successfully containerized the application stack with Docker Compose, ready for Cloud AWS infrastructure deployment in Week 3.

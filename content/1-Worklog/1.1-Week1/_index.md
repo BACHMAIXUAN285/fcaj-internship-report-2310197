@@ -8,25 +8,26 @@ pre: " <b> 1.1. </b> "
 
 ### Week 1 Objectives:
 
-* Research general modern Web Application Architectures and Cloud Computing principles.
-* Explore core AWS infrastructure services (**EC2**, **S3**, **RDS**, **DynamoDB**, **API Gateway**, **IAM**, **VPC**) applied to Healthcare Web Systems.
-* Analyze and select an appropriate architectural pattern for the application (Monolithic vs Microservices vs Serverless) and design a high-level Cloud Infrastructure Diagram for the healthcare app.
-* Set up the local development environment (Local Environment) and initialize projects using Next.js (Frontend) and NestJS (Backend).
+* Conduct general research on modern Web Application Architecture and Cloud Computing.
+* Explore core infrastructure services on **AWS** (Cognito, EC2, S3, RDS PostgreSQL, CloudWatch, SES/SNS, IAM, VPC) tailored for the Smart Healthcare Digital Platform.
+* Analyze and select an appropriate architectural pattern for the application (Multi-tier Microservices on Docker), and design an overview Cloud Infrastructure Diagram following AWS Well-Architected Framework standards.
+* Perform detailed analysis of the core **Business Flow** comprising 5 stages: System Setup, Patient Onboarding, 3-Level AI Triage, Overbooking Prevention Slot Booking, and Split View Consultation.
+* Prepare local development environment (Local Environment) and initialize projects with Next.js 14 Responsive (Frontend) and NestJS (Backend).
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Research Cloud Computing fundamentals (IaaS, PaaS, SaaS) and benefits of cloud deployment <br> - Analyze the 3-Tier Web Architecture (Presentation - Application - Database) for the Healthcare project | 01/06/2026 | 01/06/2026 | [Here](<https://aws.amazon.com/what-is-cloud-computing/>) |
-| Tue | - Learn core AWS services: **EC2** (Server), **S3** (File/QR code/medical record storage), **RDS/DynamoDB** (Database), **API Gateway** <br> - Evaluate trade-offs between self-managing servers on EC2 vs using Fully Managed Services | 02/06/2026 | 02/06/2026 | [Here](<https://docs.aws.amazon.com/>) |
-| Wed | - Study cloud security solutions: Access management with **AWS IAM**, secure network isolation with **AWS VPC** (Public/Private Subnets) <br> - Research healthcare data compliance standards and data encryption (At-Rest and In-Transit via SSL/TLS) | 03/06/2026 | 03/06/2026 | [Here](<https://docs.aws.amazon.com/iam/>) |
-| Thu | - Install development tools: **AWS CLI**, **Node.js**, **Docker**, configure AWS IAM user credentials <br> - Initialize GitHub repository and set up project directory structures for Frontend (Next.js) and Backend (NestJS) | 04/06/2026 | 04/06/2026 | [Here](<https://docs.aws.amazon.com/cli/>) |
-| Fri | - Sketch and draw the Cloud Infrastructure Diagram (**AWS Architecture Diagram**) for the Healthcare Web Application <br> - Document technical requirements and finalize core feature workflows: Appointment booking, medical record lookup, payments, and Chatbot | 05/06/2026 | 05/06/2026 | [Here](<https://aws.amazon.com/architecture/>) |
+| Mon | - Overview research on cloud computing (IaaS, PaaS, SaaS) and benefits of deploying Healthcare Web Applications on Cloud.<br>- Analyze 3-Tier Web Architecture (Presentation - Application - Database) applied to the project. | 06/01/2026 | 06/01/2026 | [Here](<https://aws.amazon.com/what-is-cloud-computing/>) |
+| Tue | - Research core AWS services: **AWS Cognito** (Auth & Temp Password), **EC2** (Docker Containers), **S3** (Prescription/AI Report Storage), **RDS PostgreSQL** (PostgreSQL 16.x), **SageMaker** (AI Triage Endpoint).<br>- Evaluate pros and cons of self-managing servers on EC2 vs. utilizing fully Managed Services. | 06/02/2026 | 06/02/2026 | [Here](<https://docs.aws.amazon.com/>) |
+| Wed | - Research cloud information security solutions: Access management via **AWS IAM**, secure network partitioning via **AWS VPC** (Public/Private Subnets for Multi-AZ).<br>- Study healthcare data security standards (UUID encryption, JWT Token verification, Data At-Rest & In-Transit encryption). | 06/03/2026 | 06/03/2026 | [Here](<https://docs.aws.amazon.com/iam/>) |
+| Thu | - Install development tools: **AWS CLI**, **Node.js**, **Docker Desktop**, **WSL 2**, configure AWS IAM account.<br>- Initialize GitHub Repository and set up project directory structure for Frontend (Next.js 14) and Backend (NestJS Framework). | 06/04/2026 | 06/04/2026 | [Here](<https://docs.aws.amazon.com/cli/>) |
+| Fri | - Draft and render Cloud Infrastructure Architecture Diagram (**AWS Architecture Diagram**) for the Smart Healthcare Platform.<br>- Prepare Technical Requirements document and finalize detailed **Business Flow** (Admin Onboard Doctor, Initial Medical Declaration Form, 3-Level AI Triage, Bottom Sheet Booking, and Doctor Split View UI). | 06/05/2026 | 06/05/2026 | [Here](<https://aws.amazon.com/architecture/>) |
 
 
 ### Week 1 Achievements:
 
-* Mastered multi-tier web architecture, cloud computing fundamentals, and essential AWS services.
-* Completed the high-level **AWS Architecture Diagram** for the Healthcare Web System, clearly defining deployment locations for Frontend, Backend, and Database tiers.
-* Gained a solid understanding of secure network partitioning mechanisms (VPC, Public/Private Subnets) and access control via AWS IAM.
-* Successfully initialized local development environments and base source code repositories connected to GitHub for **Next.js** and **NestJS**.
-* Prepared for Week 2 tasks focusing on developing user interfaces and core Backend APIs for the appointment booking system.
+* Mastered Multi-tier Web Architecture, foundational cloud computing concepts, and core AWS services applied to Healthcare domain.
+* Completed AWS Well-Architected Cloud Infrastructure Diagram (**AWS Architecture Diagram**), clearly defining deployment topologies for Public/Private Subnets, Load Balancers, Containers, and Databases.
+* Finalized core Business Flow document covering 5 detailed stages from Onboarding, AI Triage to Consultation.
+* Gained clear understanding of secure network partitioning (VPC, Public/Private Subnet) and access control/authorization via AWS IAM & Cognito.
+* Successfully initialized local development environment and base repository structure for **Next.js 14** and **NestJS** integrated with GitHub.
